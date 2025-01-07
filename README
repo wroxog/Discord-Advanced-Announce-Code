@@ -1,0 +1,15 @@
+Advanced Announcement Bot
+Welcome to Advanced Announcement Bot, the ultimate tool designed to enhance your Discord experience by managing announcements with unparalleled customization. Build, modify, and elevate your Discord server with a bot that offers beautiful embeds, colorful banners, customizable icons, and more!
+
+Developer: Wrox/zpyrx
+Version: 1.2
+
+About the Bot
+This powerful and versatile bot enables users to create and manage professional-looking announcements in Discord with ease. With support for custom color schemes, personalized icons, and dynamic banners, this bot offers advanced customization options, making it the perfect solution for server administrators looking to upgrade the visual presentation of their announcements. Whether you're creating important notifications or just keeping your community updated, the Advanced Announcement Bot is your perfect companion.
+
+Key Features:
+Color Customization: Use a wide variety of colors to style your announcements and make them stand out!
+Customizable Icons & Banners: Set a custom avatar or banner image for your announcements.
+Effortless Commands: Easy-to-use slash commands for managing your bot with /ann, /setbanner, /seticon, and more.
+Dynamic Embed: Automatically generate professional-looking embed messages with just a command.
+Fully Open-Source: Modify, share, and create new features on top of this bot by accessing the code on GitHub.
