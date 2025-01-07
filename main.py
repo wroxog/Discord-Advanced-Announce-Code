@@ -8,7 +8,7 @@ import sqlite3
 import re
 
 # TOKEN
-bot_token = "MTI3NTE0NTgzNjUzMTAyODA3OQ.G1qaTX.6EFY2ZB7uHl-k8q4BlFTczoOyaKme4ZjHytKmg"  # Replace with your actual bot token
+bot_token = "TOKEN!"  # Replace with your actual bot token
 
 intents = discord.Intents.default()
 intents.messages = True
