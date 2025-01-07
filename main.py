@@ -10,7 +10,6 @@ import re
 # TOKEN
 bot_token = "MTI3NTE0NTgzNjUzMTAyODA3OQ.G1qaTX.6EFY2ZB7uHl-k8q4BlFTczoOyaKme4ZjHytKmg"  # Replace with your actual bot token
 
-# Intents setup
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
@@ -52,7 +51,7 @@ def init_db():
     else:
         print("✅ [INFO] Database found. Loading configurations...")
 
-# Insert Default Colors
+
 def insert_default_colors():
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
@@ -125,7 +124,6 @@ async def on_ready():
     print(f"✅ Bot started as {bot.user}")
     print(f"📂 Database and configurations loaded successfully.")
 
-# Command: /ann
 @bot.tree.command(name="ann", description="📢 Create an announcement.")
 @app_commands.describe(title="📋 Title of the announcement.", description="📝 Description of the announcement.", color_name="🎨 Optional color name or hex code.")
 async def ann(interaction: discord.Interaction, title: str = None, description: str = None, color_name: str = None):
@@ -139,7 +137,6 @@ async def ann(interaction: discord.Interaction, title: str = None, description: 
         )
         return
 
-    # Validate and set color
     color = hex_to_color(color_name) if color_name and color_name.startswith("#") else hex_to_color(bot.color_map.get(color_name.lower()))
     if not color:
         await interaction.response.send_message(
@@ -151,7 +148,6 @@ async def ann(interaction: discord.Interaction, title: str = None, description: 
         )
         return
 
-    # Create the embed
     embed = discord.Embed(title=title, description=description, color=color)
     if bot.banner_url:
         embed.set_image(url=bot.banner_url)
@@ -162,7 +158,6 @@ async def ann(interaction: discord.Interaction, title: str = None, description: 
     # Send only to the interaction channel
     await interaction.response.send_message(embed=embed)
 
-# Command: /addcolor
 @bot.tree.command(name="addcolor", description="🎨 Add a new custom color.")
 @app_commands.describe(name="📋 Name of the color.", hexcolor="🛠️ Hexadecimal color code.")
 async def addcolor(interaction: discord.Interaction, name: str = None, hexcolor: str = None):
@@ -207,7 +202,6 @@ async def addcolor(interaction: discord.Interaction, name: str = None, hexcolor:
             color=discord.Color.green()
         ), ephemeral=True)
 
-# Command: /colorshelp
 @bot.tree.command(name="colorshelp", description="🛠️ View all available colors.")
 async def colorshelp(interaction: discord.Interaction):
     embed = discord.Embed(title="🎨 Available Colors", color=discord.Color.blue())
@@ -216,7 +210,6 @@ async def colorshelp(interaction: discord.Interaction):
 
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
-# Command: /setbanner
 @bot.tree.command(name="setbanner", description="🖼️ Set a banner for announcements.")
 @app_commands.describe(url="📷 URL of the banner image.")
 async def setbanner(interaction: discord.Interaction, url: str):
@@ -235,7 +228,6 @@ async def setbanner(interaction: discord.Interaction, url: str):
         ), ephemeral=True
     )
 
-# Command: /seticon
 @bot.tree.command(name="seticon", description="🔗 Set an icon for announcements.")
 @app_commands.describe(type="🛠️ Use 'bot' for bot's avatar or 'custom' for a URL.", value="Custom icon URL for 'custom' type.")
 async def seticon(interaction: discord.Interaction, type: str, value: str = None):
@@ -278,7 +270,6 @@ async def seticon(interaction: discord.Interaction, type: str, value: str = None
             ), ephemeral=True
         )
 
-# Command: /help
 @bot.tree.command(name="help", description="ℹ️ Show the list of commands.")
 async def help(interaction: discord.Interaction):
     embed = discord.Embed(
@@ -298,7 +289,6 @@ async def help(interaction: discord.Interaction):
 
 @bot.tree.command(name="botinfo", description="🤖 Display detailed information about the bot with live updates.")
 async def botinfo(interaction: discord.Interaction):
-    # Function to calculate uptime and joined elapsed time
     def calculate_times():
         current_time = datetime.now(timezone.utc)  # Ensure timezone-aware datetime
         bot_uptime = current_time - bot.start_time.replace(tzinfo=timezone.utc)  # Ensure bot.start_time is timezone-aware
@@ -353,7 +343,6 @@ async def botinfo(interaction: discord.Interaction):
         embed.timestamp = datetime.now(timezone.utc)
         return embed
 
-    # Respond to interaction with the initial embed
     try:
         initial_embed = create_embed()
         await interaction.response.send_message(embed=initial_embed)
